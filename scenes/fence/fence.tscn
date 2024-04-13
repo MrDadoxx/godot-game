@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c08unaaiqthds"]
+
+[ext_resource type="Texture2D" uid="uid://b50ql82tk3p82" path="res://assets/textures/fence.png" id="1_we5rx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qneu1"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_we5rx")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_26dgo"]
+material = SubResource("StandardMaterial3D_qneu1")
+size = Vector3(2, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d65rc"]
+
+[node name="fence" type="MeshInstance3D"]
+transform = Transform3D(4.333, 0, 0, 0, 1.667, 0, 0, 0, 0.0370026, 0, 0, 0)
+mesh = SubResource("BoxMesh_26dgo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1.95728, 0, 0, 0, 3.01491, 0, 0, 0, 1, 0, 0.931402, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_d65rc")

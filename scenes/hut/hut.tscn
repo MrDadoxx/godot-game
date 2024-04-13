@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqbygcmh8ypog"]
+
+[ext_resource type="PackedScene" uid="uid://d3emo7ama5jr" path="res://assets/models/hut/hut.glb" id="1_uyllg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f6s48"]
+size = Vector3(33.9003, 16.4396, 24.9108)
+
+[node name="Hut" type="Node3D"]
+
+[node name="hut" parent="." instance=ExtResource("1_uyllg")]
+
+[node name="House" type="StaticBody3D" parent="hut"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -28.0753)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hut/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6245, 2.04373, 4.14238)
+shape = SubResource("BoxShape3D_f6s48")
