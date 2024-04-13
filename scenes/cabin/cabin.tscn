@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://clw3cyyb6s3b8"]
+[gd_scene load_steps=12 format=3 uid="uid://clw3cyyb6s3b8"]
 
 [ext_resource type="Shader" path="res://scenes/garden/garden.gdshader" id="1_6o5mb"]
 [ext_resource type="Texture2D" uid="uid://dgygemuddaic7" path="res://assets/textures/wood planks.png" id="1_8pjf0"]
 [ext_resource type="PackedScene" uid="uid://5n20devvmb7u" path="res://scenes/player/player.tscn" id="1_u7kc5"]
 [ext_resource type="Texture2D" uid="uid://gfc5pxbtlfjy" path="res://assets/textures/hut_tronco.png" id="1_ug1m8"]
 [ext_resource type="PackedScene" uid="uid://bccmkiyp3uqua" path="res://scenes/door/door.tscn" id="4_5hs6l"]
-[ext_resource type="PackedScene" uid="uid://dvnp7d71tc06v" path="res://scenes/garden/garden.tscn" id="5_hmjll"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s6eyb"]
 shader = ExtResource("1_6o5mb")
@@ -106,11 +105,16 @@ transform = Transform3D(-11.3886, -5.75543e-07, 1.41802e-08, 0, 6.58344, 0.16220
 flip_faces = true
 mesh = SubResource("BoxMesh_edqut")
 
-[node name="Door" parent="Stage" instance=ExtResource("4_5hs6l")]
-transform = Transform3D(-0.0307479, 0, 0.999527, 0, 1, 0, -0.999527, 0, -0.0307479, 5.39146, 1.05018, 1.64556)
-scene_to_go = ExtResource("5_hmjll")
+[node name="Door" parent="Stage" node_paths=PackedStringArray("character") instance=ExtResource("4_5hs6l")]
+transform = Transform3D(-0.0302151, 0, 1.56254, 0, 1.62126, 0, -0.982207, 0, -0.0480676, 5.39146, 1.05018, 1.64556)
+scene_path = "res://scenes/garden/garden.tscn"
+teleport_position = Vector3(-7.03288, -7.90269, -21.2323)
+teleport_rotation = Vector3(0, -180, 0)
+character = NodePath("../../Entities/Player")
 
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource("1_u7kc5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31373, 0.992653, 0.568298)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.70557, 0.999633, -1.77656)
+
+[connection signal="entered" from="Stage/Door" to="Entities/Player" method="_on_door_entered"]

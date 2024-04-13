@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dvnp7d71tc06v"]
+[gd_scene load_steps=24 format=3 uid="uid://dvnp7d71tc06v"]
 
 [ext_resource type="PackedScene" uid="uid://5n20devvmb7u" path="res://scenes/player/player.tscn" id="1_j8tbe"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="2_plxvl"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://xnrm8qfef1q8" path="res://assets/sounds/wind.wav" id="15_7h7p4"]
 [ext_resource type="PackedScene" uid="uid://bccmkiyp3uqua" path="res://scenes/door/door.tscn" id="15_n5uqn"]
 [ext_resource type="PackedScene" uid="uid://cqbygcmh8ypog" path="res://scenes/hut/hut.tscn" id="15_q7qqe"]
+[ext_resource type="PackedScene" uid="uid://bokh38tdl3rvc" path="res://scenes/gamemanager/game_manager.tscn" id="17_dp658"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fdoux"]
 shader = ExtResource("14_7wj3h")
@@ -520,15 +521,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.94, -10.6488, 22.8695)
 [node name="Hut" parent="Stage" instance=ExtResource("15_q7qqe")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -9.45536, -8.18969, -20.3106)
 
-[node name="Door" parent="Stage" node_paths=PackedStringArray("character") instance=ExtResource("15_n5uqn")]
-transform = Transform3D(1, 0, 0, 0, 1.74697, 0, 0, 0, 1, -6.78935, -8.44516, -23.0741)
+[node name="Door" parent="Stage/Hut" node_paths=PackedStringArray("character") instance=ExtResource("15_n5uqn")]
+transform = Transform3D(-2.62268e-07, 0, 6, 0, 6, 0, -6, 0, -2.62268e-07, 13.3606, 1.21507, -11.4623)
 scene_path = "res://scenes/cabin/cabin.tscn"
-teleport_position = Vector3(5.70557, 0.999633, 0.719875)
-character = NodePath("../../Entities/Player")
+teleport_position = Vector3(5.31373, 0.992653, 0.576451)
+character = NodePath("../../../Entities/Player")
 
 [node name="Entities" type="Node3D" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource("1_j8tbe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.03288, -7.90269, -17.2111)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.03288, -7.90269, -19.7788)
 
-[connection signal="entered" from="Stage/Door" to="Entities/Player" method="_on_door_entered"]
+[node name="GameManager" parent="." instance=ExtResource("17_dp658")]

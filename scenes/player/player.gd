@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var camera = $Head/Camera3D
 @onready var feet = $Feet
 @onready var footstep_player = $Footsteps
+@onready var hut_door = get_parent().get_parent().get_node("Stage/Hut/hut/door")
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 6.0
 const JUMP_VELOCITY = 4.5
@@ -88,3 +89,9 @@ func _on_feet_body_entered(body):
 func _on_feet_body_exited(body):
 	if "foot_sound" in body:
 		footstep_sound = null
+
+func _on_door_entered(teleport_position, teleport_rotation, scene_to_go):
+	print("1: ", position, " - ", rotation)
+	get_tree().change_scene_to_packed(scene_to_go)
+	print("2: ", position, " - ", rotation)
+	global_transform.origin = teleport_position
